@@ -25,9 +25,8 @@ import { signIn, signOut } from "../actions";
 //   }
 
 //   onAuthChange = (isSignedIn) => {
-//     console.log(isSignedIn);
 //     if (isSignedIn) {
-//       this.props.signIn();
+//       this.props.signIn(this.auth.currentUser.get().getId());
 //     } else {
 //       this.props.signOut();
 //     }
@@ -83,18 +82,15 @@ const GoogleAuth = ({ isSignedIn, signIn, signOut }) => {
         })
         .then(() => {
           let auth = window.gapi.auth2.getAuthInstance();
-          onAuthChange(auth.isSignedIn.get());
-          auth.isSignedIn.listen(() => {
-            onAuthChange(auth);
-          });
+          onAuthChange(auth?.isSignedIn.get());
+          auth.isSignedIn.listen(onAuthChange);
         });
     });
   }, []);
 
   const onAuthChange = (isSignedIn) => {
-    console.log(isSignedIn);
     if (isSignedIn) {
-      signIn();
+      signIn(auth?.currentUser.get().getId());
     } else {
       signOut();
     }
