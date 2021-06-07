@@ -70,7 +70,7 @@ import { signIn, signOut } from "../actions";
 /*function component start*/
 
 const GoogleAuth = ({ isSignedIn, signIn, signOut }) => {
-  let auth = window.gapi?.auth2?.getAuthInstance();
+  let auth = window.gapi.auth2?.getAuthInstance();
 
   useEffect(() => {
     window.gapi.load("client:auth2", () => {
@@ -83,10 +83,10 @@ const GoogleAuth = ({ isSignedIn, signIn, signOut }) => {
         .then(() => {
           let auth = window.gapi.auth2.getAuthInstance();
           onAuthChange(auth?.isSignedIn.get());
-          auth.isSignedIn.listen(onAuthChange);
+          auth?.isSignedIn.listen(onAuthChange);
         });
     });
-  }, []);
+  }, [isSignedIn]);
 
   const onAuthChange = (isSignedIn) => {
     if (isSignedIn) {
