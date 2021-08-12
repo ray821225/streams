@@ -30,6 +30,7 @@ import { createStream } from "../../actions";
 
 //   onSubmit = (formProps) => {
 //     console.log(formProps);
+//     console.log(this.props,'props')
 //     this.props.createStream(formProps);
 //   };
 
@@ -90,19 +91,18 @@ const renderError = ({ error, touched }) => {
   }
 };
 
-const onSubmit = (formProps, createStream) => {
-  console.log(formProps);
-  console.log("inn");
-  createStream(formProps);
-};
 
-const StreamCreate = ({ handleSubmit }) => {
+const StreamCreate = ({createStream,handleSubmit}) => {
+
+
+  const onSubmit = (value) => {
+    createStream(value);
+  };
+  
   return (
     <form
       className="ui form error"
-      onSubmit={handleSubmit(() => {
-        return onSubmit;
-      })}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Field name="title" component={renderInput} label="Enter title" />
       <Field
