@@ -30,6 +30,7 @@ import { createStream } from "../../actions";
 
 //   onSubmit = (formProps) => {
 //     console.log(formProps);
+//     console.log(this.props,'props')
 //     this.props.createStream(formProps);
 //   };
 
@@ -91,8 +92,8 @@ const renderError = ({ error, touched }) => {
 };
 
 const StreamCreate = ({ createStream, handleSubmit }) => {
-  const onSubmit = (formProps) => {
-    createStream(formProps);
+  const onSubmit = (value) => {
+    createStream(value);
   };
 
   return (
