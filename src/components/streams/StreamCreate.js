@@ -90,20 +90,13 @@ const renderError = ({ error, touched }) => {
   }
 };
 
-const onSubmit = (formProps, createStream) => {
-  console.log(formProps);
-  console.log("inn");
-  createStream(formProps);
-};
+const StreamCreate = ({ createStream, handleSubmit }) => {
+  const onSubmit = (formProps) => {
+    createStream(formProps);
+  };
 
-const StreamCreate = ({ handleSubmit }) => {
   return (
-    <form
-      className="ui form error"
-      onSubmit={handleSubmit(() => {
-        return onSubmit;
-      })}
-    >
+    <form className="ui form error" onSubmit={handleSubmit(onSubmit)}>
       <Field name="title" component={renderInput} label="Enter title" />
       <Field
         name="description"
