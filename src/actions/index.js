@@ -1,4 +1,3 @@
-import { formValues } from "redux-form";
 import streams from "../apis/streams";
 import {
   SIGN_IN,
@@ -27,7 +26,7 @@ export const createStream = (formValues) => async (dispatch, getStore) => {
   const response = await streams.post("/streams", formValues);
 
   dispatch({
-    action: "CREATE_STREAM",
+    type: CREATE_STREAM,
     payload: response.data,
   });
 };
@@ -36,7 +35,7 @@ export const fetchStreams = () => async (dispatch, getStore) => {
   const response = await streams.get("/streams");
 
   dispatch({
-    action: "FETCH_STREAMS",
+    type: FETCH_STREAMS,
     paylolad: response.data,
   });
 };
@@ -45,7 +44,7 @@ export const fetchStream = (id) => async (dispatch, getStore) => {
   const response = await streams.get(`/stream/${id}`);
 
   dispatch({
-    action: "FETCH_STREAM",
+    type: FETCH_STREAM,
     payload: response.data,
   });
 };
@@ -54,7 +53,7 @@ export const editStream = (id, formValues) => async (dispatch, getStore) => {
   const response = await streams.put(`/stream/${id}`);
 
   dispatch({
-    action: "UPDATE_STREAM",
+    type: EDIT_STREAM,
     payload: response.data,
   });
 };
@@ -63,7 +62,7 @@ export const deleteStream = (id) => async (dispatch, getStore) => {
   await streams.delete(`/stream/${id}`);
 
   dispatch({
-    action: "DELETE_STREAM",
+    type: DELETE_STREAM,
     payload: id,
   });
 };
