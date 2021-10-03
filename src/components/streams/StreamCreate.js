@@ -70,7 +70,6 @@ import { createStream } from "../../actions";
 // function component start
 
 const renderInput = ({ input, label, meta }) => {
-  // console.log(input);
   const className = `field ${meta.error && meta.touched ? "error" : ""}`;
   return (
     <div className={className}>
@@ -110,8 +109,6 @@ const StreamCreate = ({ createStream, handleSubmit }) => {
 };
 
 const validate = (formValues) => {
-  // console.log(formValues);
-
   const errors = {};
   if (!formValues.title) {
     errors.title = "You must enter a title";
